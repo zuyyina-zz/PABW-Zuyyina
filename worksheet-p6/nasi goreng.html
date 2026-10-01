@@ -1,115 +1,100 @@
 <!DOCTYPE html>
-<!-- saved from url=(0066)file:///C:/Users/asus/Downloads/kerangka-profil.html#tentangsaya-3 -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>Nasi goreng saya</title>
+<html lang="id">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Judul halaman Anda</title>
- 
-  <!-- urutan ini yang benar: token -> dasar -> tata letak -> komponen -> tema -->
+  <title>Nasi Goreng Saya</title>
+
+  <!-- urutan CSS: token -> dasar -> tata letak -> komponen -> tema -->
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="base.css">
   <link rel="stylesheet" href="layout.css">
   <link rel="stylesheet" href="komponen.css">
   <link rel="stylesheet" href="tema.css">
-</head> 
-
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">  
 </head>
 <body>
 
-       <h1> Nasi goreng saya </h1> 
-       <nav>
-         <ul>
-           <li><a href="#daftarbahan-1">daftar bahan</a></li>
-           <li><a href="#caramembuat-2">cara membuat</a></li>
-           <li><a href="#tentangsaya-3">tentang saya</a></li>
-         </ul>
-       </nav>
+  <!-- HEADER -->
+  <header>
+    <div class="header-baris">
+      <div class="header-left">
+        <span class="theme-toggle">Tema gelap</span>
+        <h1>Nasi Goreng Saya</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#daftarbahan-1">Daftar Bahan</a></li>
+          <li><a href="#caramembuat-2">Cara Membuat</a></li>
+          <li><a href="#tentangsaya-3">Tentang Saya</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-     <main> 
-        <section id="daftarbahan-1">
-          <h2>daftar bahan</h2>
-          <!-- tabel Anda nanti di sini (Lembar D) -->
+  <main>
+    <!-- KATALOG / KARTU DAFTAR BAHAN -->
+    <section id="daftarbahan-1">
+      <h2>Daftar Bahan</h2>
+      <div class="katalog">
+        <div class="kartu">
+          <h3>Nasi Goreng Sayur</h3>
+          <p><strong>Bahan:</strong> Brokoli, jagung, telur</p>
+          <p><strong>Kesulitan:</strong> Mudah</p>
+        </div>
+        <div class="kartu">
+          <h3>Nasi Goreng Spesial</h3>
+          <p><strong>Bahan:</strong> Sosis, telur, bakso, ati</p>
+          <p><strong>Kesulitan:</strong> Sedang</p>
+        </div>
+        <div class="kartu">
+          <h3>Nasi Goreng Daging</h3>
+          <p><strong>Bahan:</strong> Daging, telur</p>
+          <p><strong>Kesulitan:</strong> Sulit</p>
+        </div>
+      </div>
     </section>
 
+    <!-- FOTO & FORM BERDAMPINGAN -->
+    <section class="grid-dua-kolom">
+      <div class="media-container">
+        <figure>
+          <img src="Nasi goreng.jpg" alt="Nasi goreng yang lezat" loading="lazy">
+          <figcaption>Nasi goreng yang lezat</figcaption>
+        </figure>
+      </div>
 
-   <table>
-  <caption>Daftar Bahan</caption>
-  <thead>
-  <tr>
-      <th scope="col">pilihan</th>
-      <th scope="col">bahan pelengkap</th>
-      <th scope="col">tingkat kesulitan</th>
-    </tr>
-  </thead>
-  <tbody>
-   <tr>
-      <th scope="row">Nasi goreng sayur</th>
-      <td>Brokoli, jagung, telur</td>
-      <td>Mudah</td>
-    </tr>
-    <tr>
-      <th scope="row">Nasi goreng spesial</th>
-      <td>sosis,telur,bakso,ati </td>
-      <td>sedang</td>
-    </tr>
-    <tr>
-      <th scope="row">Nasi goreng daging</th>
-      <td>Daging,telur</td>
-      <td>sulit</td>
-    </tr>
-  </tbody>
-</table>
+      <div class="form-container" id="caramembuat-2">
+        <h2>Cara Membuat</h2>
+        <form action="#" method="post" class="form-kegiatan">
+          <div class="form-kolom">
+            <label for="nama">Nama:</label>
+            <input type="text" id="nama" name="nama" required>
+          </div>
 
- <figure>
-      <img src="Nasi goreng.jpg"
-           alt="nasi goreng"
-           width="480" height="480" loading="lazy">
-      <figcaption>Nasi goreng yang lezat</figcaption>
-    </figure>
+          <div class="form-kolom">
+            <label for="bahan">Bahan:</label>
+            <input type="text" id="bahan" name="bahan" required>
+          </div>
 
-        <section id="caramembuat-2">
-          <h2>cara membuat</h2>
-         
-      
-   <form action="#" method="post">
+          <div class="form-kolom">
+            <label for="tingkat">Tingkat Kesulitan:</label>
+            <input type="text" id="tingkat" name="tingkat" required>
+          </div>
 
-        <p>
-          <label for="nama">Nama:</label>
-          <input type="text" id="nama" name="nama" required>
-        </p>
-
-        <p>
-          <label for="bahan">Bahan:</label>
-          <input type="text" id="bahan" name="bahan" required>
-        </p>
-
-        <p>
-          <label for="tingkat">Tingkat Kesulitan:</label>
-          <input type="text" id="tingkat" name="tingkat" required>
-        </p>
-
-        <button type="submit">Simpan</button>
-
-      </form>
+          <button type="submit">Simpan</button>
+        </form>
+      </div>
     </section>
 
+    <!-- TENTANG SAYA -->
+    <section id="tentangsaya-3">
+      <h2>Tentang Saya</h2>
+    </section>
   </main>
 
-  <section id="tentangsaya -3">
-  <h2>tentang saya</h2>
-  </section>
-  </main>
- 
   <footer>
-    <p>zuyyina liwalidain, nim: 25523069, 2026</p>
+    <p>zuyyina liwalidain, 25523069, 2026</p>
   </footer>
 
-
-
-
-</main></body></html>
-
-<!-- p -->
+</body>
+</html>
