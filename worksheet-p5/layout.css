@@ -57,3 +57,15 @@ footer {
   color: var(--color-fg);       /* hindari abu pucat yang gagal kontras */
   font-size: var(--text-sm);
 }
+
+/* Meratakan semua judul kolom (th) dan sel isi (td) di tengah */
+th, td {
+  text-align: center;
+  vertical-align: middle; /* Opsional: agar teks berada tepat di tengah secara vertikal */
+}
+
+/* Jika menggunakan kelas pada tabel */
+table {
+  width: 100%; /* Atau sesuaikan dengan lebar yang diinginkan */
+  margin: 0 auto; /* Memposisikan tabel itu sendiri di tengah */
+}
