@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nasi Goreng Saya</title>
+
+  <!-- urutan CSS: token -> dasar -> tata letak -> komponen -> tema -->
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="layout.css">
+  <link rel="stylesheet" href="komponen.css">
+  <link rel="stylesheet" href="tema.css">
+  <link rel="stylesheet" href="responsif.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-baris">
+      <div class="header-left">
+        <span class="theme-toggle">Tema gelap</span>
+        <h1>Nasi Goreng Saya</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#daftarbahan-1">Daftar Bahan</a></li>
+          <li><a href="#caramembuat-2">Cara Membuat</a></li>
+          <li><a href="#tentangsaya-3">Tentang Saya</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- KATALOG / KARTU DAFTAR BAHAN -->
+    <section id="daftarbahan-1">
+      <h2>Daftar Bahan</h2>
+      <div class="katalog">
+        <div class="kartu">
+          <h3>Nasi Goreng Sayur</h3>
+          <p><strong>Bahan:</strong> Brokoli, jagung, telur</p>
+          <p><strong>Kesulitan:</strong> Mudah</p>
+        </div>
+        <div class="kartu">
+          <h3>Nasi Goreng Spesial</h3>
+          <p><strong>Bahan:</strong> Sosis, telur, bakso, ati</p>
+          <p><strong>Kesulitan:</strong> Sedang</p>
+        </div>
+        <div class="kartu">
+          <h3>Nasi Goreng Daging</h3>
+          <p><strong>Bahan:</strong> Daging, telur</p>
+          <p><strong>Kesulitan:</strong> Sulit</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOTO & FORM BERDAMPINGAN -->
+    <section class="grid-dua-kolom">
+      <div class="media-container">
+        <figure>
+          <img src="Nasi goreng.jpg" alt="Nasi goreng yang lezat" loading="lazy">
+          <figcaption>Nasi goreng yang lezat</figcaption>
+        </figure>
+      </div>
+
+      <div class="form-container" id="caramembuat-2">
+        <h2>Cara Membuat</h2>
+        <form action="#" method="post" class="form-kegiatan">
+          <div class="form-kolom">
+            <label for="nama">Nama:</label>
+            <input type="text" id="nama" name="nama" required>
+          </div>
+
+          <div class="form-kolom">
+            <label for="bahan">Bahan:</label>
+            <input type="text" id="bahan" name="bahan" required>
+          </div>
+
+          <div class="form-kolom">
+            <label for="tingkat">Tingkat Kesulitan:</label>
+            <input type="text" id="tingkat" name="tingkat" required>
+          </div>
+
+          <button type="submit">Simpan</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- TENTANG SAYA -->
+    <section id="tentangsaya-3">
+      <h2>Tentang Saya</h2>
+    </section>
+  </main>
+
+  <footer>
+    <p>zuyyina liwalidain, 25523069, 2026</p>
+  </footer>
+
+</body>
+</html>
