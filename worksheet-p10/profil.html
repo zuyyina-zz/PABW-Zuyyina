@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nasi Goreng Saya</title>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="layout.css">
+  <link rel="stylesheet" href="komponen.css">
+  <link rel="stylesheet" href="tema.css">
+  <link rel="stylesheet" href="responsif.css">
+  <style>
+    :root { --amber-700: #b45309; --amber-500: #f59e0b; }
+    body { max-width: 1100px; margin: auto; }
+    .filter-baris { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:1rem; }
+    .filter-baris button { width:auto; margin:0; }
+    .filter-baris button.aktif { outline:3px solid var(--color-focus); }
+    .katalog { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); }
+    .pesan-kosong { padding:1rem; border:1px dashed var(--color-border); border-radius:var(--radius-md); }
+    .pesan-galat { color:#b91c1c; font-size:.9rem; min-height:1.3em; }
+    input[aria-invalid="true"] { border:2px solid #b91c1c; }
+    .tema-toggle { width:auto; }
+    .tentang { padding:1rem; background:var(--color-surface); border-radius:var(--radius-md); }
+    @media (max-width: 600px) { body { padding:1rem; } .header-left { flex-wrap:wrap; } nav ul { flex-wrap:wrap; gap:.7rem; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-baris">
+      <div class="header-left">
+        <button type="button" id="tema-toggle" class="tema-toggle">Ganti tema</button>
+        <h1>Nasi Goreng Saya</h1>
+      </div>
+      <nav aria-label="Navigasi utama">
+        <ul>
+          <li><a href="#daftarbahan-1">Daftar Menu</a></li>
+          <li><a href="#caramembuat-2">Tambah Menu</a></li>
+          <li><a href="#tentangsaya-3">Tentang Saya</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="daftarbahan-1">
+      <h2>Daftar Menu Nasi Goreng</h2>
+      <p>Pilih kategori untuk menyaring menu yang ingin dilihat.</p>
+      <div id="filter" class="filter-baris" aria-label="Filter tingkat kesulitan">
+        <button type="button" data-kategori="semua" class="aktif">Semua</button>
+        <button type="button" data-kategori="Mudah">Mudah</button>
+        <button type="button" data-kategori="Sedang">Sedang</button>
+        <button type="button" data-kategori="Sulit">Sulit</button>
+      </div>
+      <p id="pesan-kosong" class="pesan-kosong" hidden>Tidak ada menu pada kategori ini.</p>
+      <div id="daftar" class="katalog" aria-live="polite"></div>
+    </section>
+
+    <section class="grid-dua-kolom">
+      <div class="media-container">
+        <figure>
+          <img src="Nasi goreng.jpg" alt="Sepiring nasi goreng dengan telur, kerupuk, tomat, dan mentimun" loading="lazy">
+          <figcaption>Nasi goreng yang lezat</figcaption>
+        </figure>
+      </div>
+      <div class="form-container" id="caramembuat-2">
+        <h2>Tambah Menu Nasi Goreng</h2>
+        <p>Isi formulir berikut untuk menambahkan menu baru ke daftar.</p>
+        <form id="form-menu" class="form-kegiatan" novalidate>
+          <div class="form-kolom">
+            <label for="nama">Nama menu:</label>
+            <input type="text" id="nama" name="nama" required>
+            <p class="pesan-galat" id="galat-nama" aria-live="polite"></p>
+          </div>
+          <div class="form-kolom">
+            <label for="bahan">Bahan:</label>
+            <input type="text" id="bahan" name="bahan" required>
+            <p class="pesan-galat" id="galat-bahan" aria-live="polite"></p>
+          </div>
+          <div class="form-kolom">
+            <label for="tingkat">Tingkat kesulitan:</label>
+            <select id="tingkat" name="tingkat" required>
+              <option value="">Pilih tingkat kesulitan</option>
+              <option value="Mudah">Mudah</option>
+              <option value="Sedang">Sedang</option>
+              <option value="Sulit">Sulit</option>
+            </select>
+            <p class="pesan-galat" id="galat-tingkat" aria-live="polite"></p>
+          </div>
+          <button type="submit" id="tombol-simpan" disabled>Simpan menu</button>
+          <p id="pesan-sukses" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <section id="tentangsaya-3">
+      <h2>Tentang Saya</h2>
+      <div class="tentang">
+        <p><strong>Nama:</strong> Zuyyina Liwalidain</p>
+        <p><strong>NIM:</strong> 25523069</p>
+        <p><strong>Tahun:</strong> 2026</p>
+      </div>
+    </section>
+  </main>
+
+  <footer><p>Zuyyina Liwalidain · 25523069 · 2026</p></footer>
+  <script type="module" src="js/app.js"></script>
+  <script type="module" src="js/dom.js"></script>
+</body>
+</html>
