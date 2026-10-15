@@ -2,8 +2,10 @@
 <html lang="id">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Daftar Menu Saya</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nasi Goreng Saya</title>
+
+  <!-- urutan CSS: token -> dasar -> tata letak -> komponen -> tema -->
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="base.css">
   <link rel="stylesheet" href="layout.css">
@@ -14,40 +16,29 @@
     body {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 2rem;
+      padding: 1.5rem;
     }
 
-    /* Header Navigasi */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 2rem;
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 1rem;
     }
 
-    .nav-links {
+    .header-left {
       display: flex;
-      gap: 1.5rem;
-      list-style: none;
+      align-items: center;
+      gap: 1rem;
     }
 
-    .nav-links a {
-      text-decoration: none;
-      color: var(--color-primary);
-    }
-
-    /* Layout Utama 2 Kolom (Kiri: Konten Utama, Kanan: Kartu Gambar) */
+    /* Grid Utama 2 Kolom seperti Kara */
     .konten-utama {
       display: grid;
       grid-template-columns: 2fr 1fr;
       gap: 2.5rem;
-    }
-
-    /* Tabel / Daftar Menu */
-    .judul-bagian {
-      font-size: 1.5rem;
-      font-weight: bold;
-      margin-bottom: 1rem;
     }
 
     .tabel-menu {
@@ -61,25 +52,19 @@
       text-align: left;
     }
 
-    .tabel-menu th {
-      font-weight: bold;
-    }
-
-    /* Filter Kategori */
-    .filter-tombol {
+    .filter-baris {
       display: flex;
       gap: 0.5rem;
       margin-bottom: 1.5rem;
     }
 
-    .filter-tombol button {
+    .filter-baris button {
       width: auto;
       padding: 0.4rem 1.2rem;
       border-radius: 6px;
       margin: 0;
     }
 
-    /* Ringkasan Daftar List */
     .ringkasan-list {
       list-style: none;
       padding: 0;
@@ -87,37 +72,14 @@
     }
 
     .ringkasan-list li {
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
     }
 
     .ringkasan-list .judul-item {
       font-weight: bold;
     }
 
-    /* Formulir */
-    .form-group {
-      margin-bottom: 1rem;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 0.3rem;
-    }
-
-    .form-group input, .form-group select {
-      width: 100%;
-      padding: 0.5rem;
-      border-radius: 8px;
-      border: 1px solid var(--color-border);
-    }
-
-    .btn-simpan {
-      width: auto;
-      padding: 0.5rem 1.5rem;
-      border-radius: 8px;
-    }
-
-    /* Sidebar Kartu Gambar di Kanan */
+    /* Side Kartu Gambar di Kanan */
     .sidebar-kartu {
       display: flex;
       flex-direction: column;
@@ -128,22 +90,23 @@
       background: var(--color-surface);
       border-radius: 12px;
       overflow: hidden;
+      border: 1px solid var(--color-border);
       box-shadow: var(--shadow-1);
     }
 
     .kartu-item img {
       width: 100%;
-      height: 180px;
+      height: 160px;
       object-fit: cover;
     }
 
     .kartu-item .info {
-      padding: 1rem;
+      padding: 0.8rem 1rem;
     }
 
     .kartu-item .info h4 {
       font-size: 0.95rem;
-      margin-bottom: 0.3rem;
+      margin: 0;
     }
 
     footer {
@@ -155,150 +118,146 @@
 </head>
 <body>
 
+  <!-- HEADER -->
   <header>
-    <div>
-      <button type="button" id="tema-toggle" class="tema-toggle">Tema gelap</button>
-      <h1>Daftar Menu Saya</h1>
+    <div class="header-left">
+      <span class="theme-toggle">Tema gelap</span>
+      <h1>Nasi Goreng Saya</h1>
     </div>
     <nav>
-      <ul class="nav-links">
-        <li><a href="#daftar-menu">Daftar Menu</a></li>
-        <li><a href="#tambah-menu">Tambah Menu</a></li>
+      <ul style="display: flex; gap: 1.5rem; list-style: none; margin: 0; padding: 0;">
+        <li><a href="#daftarbahan-1" style="color: var(--color-primary); text-decoration: none;">Daftar Bahan</a></li>
+        <li><a href="#caramembuat-2" style="color: var(--color-primary); text-decoration: none;">Cara Membuat</a></li>
+        <li><a href="#tentangsaya-3" style="color: var(--color-primary); text-decoration: none;">Tentang Saya</a></li>
       </ul>
     </nav>
   </header>
 
   <div class="konten-utama">
-    <!-- Kolom Kiri: Tabel, Filter, Form, dan Info -->
+    <!-- KOLOM KIRI: TABEL, FILTER, LIST, & FORM -->
     <main>
-      <section id="daftar-menu">
-        <h2>Daftar Menu</h2>
-        <p style="text-align: center; margin-bottom: 1rem;">Daftar Menu dan Resep Saya</p>
-        
+      <section id="daftarbahan-1">
+        <h2>Daftar Bahan</h2>
+        <p style="margin-bottom: 1rem;">Daftar Bahan dan Nasi Goreng Saya</p>
+
+        <!-- Tabel Daftar Bahan Punya Kamu -->
         <table class="tabel-menu">
           <thead>
             <tr>
               <th>No</th>
               <th>Nama Menu</th>
-              <th>Tahun Lomba</th>
+              <th>Bahan</th>
               <th>Tingkat Kesulitan</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>1</td>
-              <td><strong>Nasi Goreng Spesial Telur</strong></td>
-              <td>2026</td>
-              <td>Sedang</td>
+              <td><strong>Nasi Goreng Sayur</strong></td>
+              <td>Brokoli, jagung, telur</td>
+              <td>Mudah</td>
             </tr>
             <tr>
               <td>2</td>
-              <td><strong>Nasi Goreng Seafood Pedas</strong></td>
-              <td>2025</td>
-              <td>Mudah</td>
+              <td><strong>Nasi Goreng Spesial</strong></td>
+              <td>Sosis, telur, bakso, ati</td>
+              <td>Sedang</td>
             </tr>
             <tr>
               <td>3</td>
-              <td><strong>Nasi Goreng Kampung Original</strong></td>
-              <td>2024</td>
-              <td>Mudah</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td><strong>Nasi Goreng Jawa Babat</strong></td>
-              <td>2023</td>
-              <td>Sedang</td>
+              <td><strong>Nasi Goreng Daging</strong></td>
+              <td>Daging, telur</td>
+              <td>Sulit</td>
             </tr>
           </tbody>
         </table>
 
-        <!-- Bagian Filter & Ringkasan -->
-        <h3 class="judul-bagian">Daftar Menu</h3>
-        <div class="filter-tombol">
+        <!-- Filter & List Ringkasan -->
+        <h2>Daftar Menu</h2>
+        <div class="filter-baris">
           <button type="button" class="aktif">Semua</button>
           <button type="button">Mudah</button>
           <button type="button">Sedang</button>
+          <button type="button">Sulit</button>
         </div>
 
         <ul class="ringkasan-list">
           <li>
-            <div class="judul-item">• Nasi Goreng Spesial Telur</div>
-            <div>Tahun: 2026</div>
-            <div>Tingkat Kesulitan: Sedang</div>
+            <div class="judul-item">• Nasi Goreng Sayur</div>
+            <div>Bahan: Brokoli, jagung, telur</div>
+            <div>Kesulitan: Mudah</div>
           </li>
           <li>
-            <div class="judul-item">• Nasi Goreng Seafood Pedas</div>
-            <div>Tahun: 2025</div>
-            <div>Tingkat Kesulitan: Mudah</div>
+            <div class="judul-item">• Nasi Goreng Spesial</div>
+            <div>Bahan: Sosis, telur, bakso, ati</div>
+            <div>Kesulitan: Sedang</div>
           </li>
           <li>
-            <div class="judul-item">• Nasi Goreng Kampung Original</div>
-            <div>Tahun: 2024</div>
-            <div>Tingkat Kesulitan: Mudah</div>
-          </li>
-          <li>
-            <div class="judul-item">• Nasi Goreng Jawa Babat</div>
-            <div>Tahun: 2023</div>
-            <div>Tingkat Kesulitan: Sedang</div>
+            <div class="judul-item">• Nasi Goreng Daging</div>
+            <div>Bahan: Daging, telur</div>
+            <div>Kesulitan: Sulit</div>
           </li>
         </ul>
+      </section>
 
-        <!-- Form Tambah Menu -->
-        <section id="tambah-menu">
-          <h3 class="judul-bagian">Tambah Menu</h3>
-          <form id="form-menu">
-            <div class="form-group">
-              <label for="nama">Nama Menu</label>
-              <input type="text" id="nama" name="nama" required>
-            </div>
-            <div class="form-group">
-              <label for="tahun">Tahun Lomba</label>
-              <input type="text" id="tahun" name="tahun" required>
-            </div>
-            <div class="form-group">
-              <label for="tingkat">Tingkat Kesulitan</label>
-              <input type="text" id="tingkat" name="tingkat" required>
-            </div>
-            <button type="submit" class="btn-simpan">Simpan</button>
-          </form>
-        </section>
+      <!-- FORM CARA MEMBUAT -->
+      <section id="caramembuat-2" class="form-container">
+        <h2>Cara Membuat</h2>
+        <form action="#" method="post" class="form-kegiatan">
+          <div class="form-kolom">
+            <label for="nama">Nama:</label>
+            <input type="text" id="nama" name="nama" required>
+          </div>
+
+          <div class="form-kolom">
+            <label for="bahan">Bahan:</label>
+            <input type="text" id="bahan" name="bahan" required>
+          </div>
+
+          <div class="form-kolom">
+            <label for="tingkat">Tingkat Kesulitan:</label>
+            <input type="text" id="tingkat" name="tingkat" required>
+          </div>
+
+          <button type="submit" style="width: auto; padding: 0.5rem 1.5rem; margin-top: 1rem;">Simpan</button>
+        </form>
+      </section>
+
+      <!-- TENTANG SAYA -->
+      <section id="tentangsaya-3" style="margin-top: 2rem;">
+        <h2>Tentang Saya</h2>
       </section>
     </main>
 
-    <!-- Kolom Kanan: Grid Kartu Berfoto (Gaya Portofolio/Katalog) -->
+    <!-- KOLOM KANAN: SIDEBAR KARTU GAMBAR KONTEN NASI GORENG -->
     <aside class="sidebar-kartu">
       <div class="kartu-item">
-        <img src="Nasi goreng.jpg" alt="Nasi Goreng Spesial Telur">
+        <img src="Nasi goreng.jpg" alt="Nasi Goreng Sayur" loading="lazy">
         <div class="info">
-          <h4>Nasi Goreng Spesial Telur 2026</h4>
+          <h4>Nasi Goreng Sayur</h4>
         </div>
       </div>
       <div class="kartu-item">
-        <img src="Nasi goreng.jpg" alt="Nasi Goreng Seafood Pedas">
+        <img src="Nasi goreng.jpg" alt="Nasi Goreng Spesial" loading="lazy">
         <div class="info">
-          <h4>Nasi Goreng Seafood Pedas 2025</h4>
+          <h4>Nasi Goreng Spesial</h4>
         </div>
       </div>
       <div class="kartu-item">
-        <img src="Nasi goreng.jpg" alt="Nasi Goreng Kampung Original">
+        <img src="Nasi goreng.jpg" alt="Nasi Goreng Daging" loading="lazy">
         <div class="info">
-          <h4>Nasi Goreng Kampung Original 2024</h4>
-        </div>
-      </div>
-      <div class="kartu-item">
-        <img src="Nasi goreng.jpg" alt="Nasi Goreng Jawa Babat">
-        <div class="info">
-          <h4>Nasi Goreng Jawa Babat 2023</h4>
+          <h4>Nasi Goreng Daging</h4>
         </div>
       </div>
     </aside>
   </div>
 
+  <!-- FOOTER -->
   <footer>
-    <p>Zuyyina Liwalidain · 25523069 · 2026</p>
+    <p>zuyyina liwalidain, 25523069, 2026</p>
   </footer>
 
   <script type="module" src="js/app.js"></script>
-  <script type="module" src="js/dom.js"></script>
+
 </body>
 </html>
