@@ -1,6 +1,6 @@
 import { daftarNasiGoreng } from "./app.js";
 
-// LEMBAR A: pilih elemen yang akan diisi atau didengarkan.
+// LEMBAR A: Seleksi elemen halaman
 const wadah = document.querySelector("#daftar");
 const barisFilter = document.querySelector("#filter");
 const pesanKosong = document.querySelector("#pesan-kosong");
@@ -11,13 +11,14 @@ const inputTingkat = document.querySelector("#tingkat");
 const tombolSimpan = document.querySelector("#tombol-simpan");
 const pesanSukses = document.querySelector("#pesan-sukses");
 
-if (!wadah || !barisFilter || !pesanKosong || !form) {
+if (!wadah || !barisFilter || !pesanKosong || !form || !tombolSimpan) {
   throw new Error("Elemen halaman tidak ditemukan. Periksa id di profil.html.");
 }
 
 let menu = [...daftarNasiGoreng];
 let kategoriAktif = "semua";
 
+// LEMBAR B: Membuat kartu DOM
 function buatKartu(item) {
   const kartu = document.createElement("article");
   kartu.className = "kartu";
@@ -28,7 +29,7 @@ function buatKartu(item) {
   const bahan = document.createElement("p");
   const labelBahan = document.createElement("strong");
   labelBahan.textContent = "Bahan: ";
-  bahan.append(labelBahan, document.createTextNode(item.bahan.join(", ")));
+  bahan.append(labelBahan, document.createTextNode(Array.isArray(item.bahan) ? item.bahan.join(", ") : item.bahan));
 
   const kesulitan = document.createElement("p");
   const labelKesulitan = document.createElement("strong");
@@ -39,9 +40,9 @@ function buatKartu(item) {
   return kartu;
 }
 
-// LEMBAR B + D: kosongkan wadah, tangani kondisi kosong, lalu gambar ulang.
+// LEMBAR B & D: Fungsi render utama
 function render(daftar) {
-  wadah.replaceChildren();
+  wadah.replaceChildren(); // Mengosongkan wadah sebelum mengisi ulang
 
   if (daftar.length === 0) {
     pesanKosong.hidden = false;
@@ -60,7 +61,7 @@ function tandaiTombolAktif(tombolAktif) {
   });
 }
 
-// LEMBAR C: satu pendengar pada induk (event delegation).
+// LEMBAR C: Event Delegation pada induk tombol filter
 barisFilter.addEventListener("click", (event) => {
   const tombol = event.target.closest("button");
   if (!tombol || !barisFilter.contains(tombol)) return;
@@ -73,7 +74,7 @@ barisFilter.addEventListener("click", (event) => {
   render(hasil);
 });
 
-// LEMBAR D: validasi per kolom.
+// LEMBAR D: Validasi Form per kolom
 const pasanganKolom = [
   { input: inputNama, pesan: document.querySelector("#galat-nama"), label: "Nama menu" },
   { input: inputBahan, pesan: document.querySelector("#galat-bahan"), label: "Bahan" },
@@ -83,7 +84,9 @@ const pasanganKolom = [
 function validasiKolom(kolom) {
   const kosong = kolom.input.value.trim() === "";
   kolom.input.setAttribute("aria-invalid", String(kosong));
-  kolom.pesan.textContent = kosong ? `${kolom.label} wajib diisi.` : "";
+  if (kolom.pesan) {
+    kolom.pesan.textContent = kosong ? `${kolom.label} wajib diisi.` : "";
+  }
   return !kosong;
 }
 
@@ -97,43 +100,51 @@ function validasiForm() {
 pasanganKolom.forEach(({ input }) => {
   input.addEventListener("input", () => {
     validasiForm();
-    pesanSukses.textContent = "";
+    if (pesanSukses) pesanSukses.textContent = "";
   });
   input.addEventListener("change", validasiForm);
 });
 
 form.addEventListener("submit", (event) => {
-  event.preventDefault();
+  event.preventDefault(); // Mencegah reload halaman
 
   if (!validasiForm()) {
     pasanganKolom.find(({ input }) => input.value.trim() === "")?.input.focus();
     return;
   }
 
-  menu = [...menu, {
+  const menuBaru = {
     nama: inputNama.value.trim(),
     bahan: inputBahan.value.split(",").map((bahan) => bahan.trim()).filter(Boolean),
     kesulitan: inputTingkat.value
-  }];
+  };
+
+  menu = [...menu, menuBaru];
 
   kategoriAktif = "semua";
   const tombolSemua = barisFilter.querySelector('[data-kategori="semua"]');
-  tandaiTombolAktif(tombolSemua);
+  if (tombolSemua) tandaiTombolAktif(tombolSemua);
+
   render(menu);
   form.reset();
+
   pasanganKolom.forEach(({ input, pesan }) => {
     input.setAttribute("aria-invalid", "false");
-    pesan.textContent = "";
+    if (pesan) pesan.textContent = "";
   });
+
   tombolSimpan.disabled = true;
-  pesanSukses.textContent = "Menu berhasil ditambahkan.";
+  if (pesanSukses) pesanSukses.textContent = "Menu berhasil ditambahkan.";
 });
 
-// Tombol tema sederhana.
-document.querySelector("#tema-toggle").addEventListener("click", () => {
-  document.body.classList.toggle("tema-gelap");
-});
+// Fitur Toggle Tema Sederhana
+const tombolTema = document.querySelector("#tema-toggle");
+if (tombolTema) {
+  tombolTema.addEventListener("click", () => {
+    document.body.classList.toggle("tema-gelap");
+  });
+}
 
-// Render awal.
+// Inisialisasi awal
 render(menu);
 validasiForm();
