@@ -7,21 +7,18 @@ export const profil = {
   keahlian: ["HTML", "CSS", "JavaScript"]
 };
 
-// Fungsi Perakit Utama (Lembar D.2)
 async function muat() {
-  aturMemuat(true); // Keadaan 1: Memuat
+  aturMemuat(true);
   try {
-    const daftar = await ambilProyek(); // 1. Ambil data via api.js
-    pasangFilter(daftar);               // 2. Pasang listener filter
-    render(daftar);                     // 3. Keadaan 2: Berhasil (render kartu)
+    const daftar = await ambilProyek();
+    pasangFilter(daftar);
+    render(daftar);
   } catch (galat) {
-    // Keadaan 3: Gagal
     tampilkanGalat("Data gagal dimuat. Periksa koneksi, lalu muat ulang halaman.");
     console.error("Detail Galat:", galat.message);
   } finally {
-    aturMemuat(false); // Selesai memuat
+    aturMemuat(false);
   }
 }
 
-// Jalankan perakit
 muat();

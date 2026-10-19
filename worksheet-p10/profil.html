@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nasi Goreng Saya</title>
 
-  <!-- Urutan CSS: Token -> Base -> Layout -> Komponen -> Tema -> Responsif -->
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="base.css">
   <link rel="stylesheet" href="layout.css">
@@ -33,13 +32,13 @@
   </header>
 
   <div class="konten-utama">
-    <!-- KOLOM KIRI: TABEL, FILTER, LIST & FORM -->
+    <!-- KOLOM KIRI -->
     <main>
       <section id="daftarbahan-1">
         <h2>Daftar Bahan</h2>
         <p>Daftar Bahan dan Nasi Goreng Saya</p>
 
-        <!-- Tabel Daftar Bahan Static -->
+        <!-- Tabel Static -->
         <div class="table-wrap">
           <table class="tabel-menu">
             <thead>
@@ -73,24 +72,23 @@
           </table>
         </div>
 
-        <!-- Filter & Katalog Kartu Dinamis -->
+        <!-- Filter berdasarkan Nama Menu -->
         <h2>Daftar Menu</h2>
         <div id="filter" class="filter-baris">
-          <button type="button" data-kategori="semua" class="aktif">Semua</button>
-          <button type="button" data-kategori="Mudah">Mudah</button>
-          <button type="button" data-kategori="Sedang">Sedang</button>
-          <button type="button" data-kategori="Sulit">Sulit</button>
+          <button type="button" data-menu="semua" class="aktif">Semua</button>
+          <button type="button" data-menu="Nasi Goreng Sayur">Nasi Goreng Sayur</button>
+          <button type="button" data-menu="Nasi Goreng Spesial">Nasi Goreng Spesial</button>
+          <button type="button" data-menu="Nasi Goreng Daging">Nasi Goreng Daging</button>
         </div>
 
-        <!-- Indikator Keadaan Antarmuka (Lembar A.3 & D.3) -->
         <p id="muat" hidden>Memuat data...</p>
         <p id="pesan-kosong" hidden>Tidak ada menu yang sesuai dengan filter.</p>
 
-        <!-- Wadah Kartu Hasil Render JavaScript -->
+        <!-- Wadah Hasil Render -->
         <div id="daftar" class="katalog"></div>
       </section>
 
-      <!-- FORM CARA MEMBUAT -->
+      <!-- FORM -->
       <section id="caramembuat-2" class="form-container">
         <h2>Cara Membuat</h2>
         <form action="#" method="post" id="form-menu" class="form-kegiatan" novalidate>
@@ -129,7 +127,7 @@
       </section>
     </main>
 
-    <!-- KOLOM KANAN: SIDEBAR KARTU GAMBAR -->
+    <!-- SIDEBAR GAMBAR -->
     <aside class="sidebar-kartu">
       <div class="kartu-item">
         <img src="nasgor sayur.jpg" alt="Nasi Goreng Sayur" loading="lazy">
@@ -157,7 +155,6 @@
     <p>zuyyina liwalidain, 25523069, 2026</p>
   </footer>
 
-  <!-- Hanya memuat app.js (Lembar A.2) -->
   <script type="module" src="js/app.js"></script>
 </body>
 </html>
