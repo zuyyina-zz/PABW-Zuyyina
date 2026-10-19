@@ -102,10 +102,11 @@ main {
   box-shadow: var(--shadow-1);
 }
 
-/* GAMBAR TAMPIL UTUH / TIDAK TERPOTONG */
+/* Ukuran Gambar Sedang & Rapi di Sidebar */
 .kartu-item img {
   width: 100%;
-  height: auto;
+  height: 180px;
+  object-fit: cover;
   display: block;
 }
 
