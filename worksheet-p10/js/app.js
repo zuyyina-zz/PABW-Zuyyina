@@ -1,40 +1,27 @@
-// Data menu nasi goreng (modul data untuk dipakai oleh dom.js)
+import { ambilProyek } from "./api.js";
+import { render, pasangFilter, aturMemuat, tampilkanGalat } from "./dom.js";
+
 export const profil = {
   nama: "Zuyyina Liwalidain",
   peran: "Mahasiswa Informatika",
   keahlian: ["HTML", "CSS", "JavaScript"]
 };
 
-export const daftarNasiGoreng = [
-  {
-    nama: "Nasi Goreng Sayur",
-    bahan: ["Brokoli", "Jagung", "Telur"],
-    kesulitan: "Mudah"
-  },
-  {
-    nama: "Nasi Goreng Spesial",
-    bahan: ["Sosis", "Telur", "Bakso", "Ati"],
-    kesulitan: "Sedang"
-  },
-  {
-    nama: "Nasi Goreng Daging",
-    bahan: ["Daging", "Telur"],
-    kesulitan: "Sulit"
+// Fungsi Perakit Utama (Lembar D.2)
+async function muat() {
+  aturMemuat(true); // Keadaan 1: Memuat
+  try {
+    const daftar = await ambilProyek(); // 1. Ambil data via api.js
+    pasangFilter(daftar);               // 2. Pasang listener filter
+    render(daftar);                     // 3. Keadaan 2: Berhasil (render kartu)
+  } catch (galat) {
+    // Keadaan 3: Gagal
+    tampilkanGalat("Data gagal dimuat. Periksa koneksi, lalu muat ulang halaman.");
+    console.error("Detail Galat:", galat.message);
+  } finally {
+    aturMemuat(false); // Selesai memuat
   }
-];
+}
 
-// Contoh pengolahan array seperti latihan pertemuan sebelumnya
-export const namaNasiGoreng = daftarNasiGoreng.map((item) => item.nama);
-export const nasiGorengMudah = daftarNasiGoreng.filter(
-  (item) => item.kesulitan === "Mudah"
-);
-export const nasiGorengSpesial = daftarNasiGoreng.find(
-  (item) => item.nama === "Nasi Goreng Spesial"
-);
-
-console.log("JavaScript berhasil terhubung!");
-console.log(profil);
-console.log("Jumlah menu:", daftarNasiGoreng.length);
-console.log("Nama menu:", namaNasiGoreng);
-console.log("Menu mudah:", nasiGorengMudah);
-console.log("Menu spesial:", nasiGorengSpesial);
+// Jalankan perakit
+muat();

@@ -1,9 +1,8 @@
-import { daftarNasiGoreng } from "./app.js";
-
 // LEMBAR A: Seleksi elemen halaman
 const wadah = document.querySelector("#daftar");
 const barisFilter = document.querySelector("#filter");
 const pesanKosong = document.querySelector("#pesan-kosong");
+const muatEl = document.querySelector("#muat");
 const form = document.querySelector("#form-menu");
 const inputNama = document.querySelector("#nama");
 const inputBahan = document.querySelector("#bahan");
@@ -11,14 +10,21 @@ const inputTingkat = document.querySelector("#tingkat");
 const tombolSimpan = document.querySelector("#tombol-simpan");
 const pesanSukses = document.querySelector("#pesan-sukses");
 
-if (!wadah || !barisFilter || !pesanKosong || !form || !tombolSimpan) {
+if (!wadah || !barisFilter || !pesanKosong || !form || !tombolSimpan || !muatEl) {
   throw new Error("Elemen halaman tidak ditemukan. Periksa id di profil.html.");
 }
 
-let menu = [...daftarNasiGoreng];
-let kategoriAktif = "semua";
+// FUNGSI PENGELOLA KEADAAN ANTARMUKA (Lembar D)
+export function aturMemuat(aktif) {
+  muatEl.hidden = !aktif;
+}
 
-// LEMBAR B: Membuat kartu DOM
+export function tampilkanGalat(pesan) {
+  wadah.textContent = "";
+  pesanKosong.textContent = pesan;
+  pesanKosong.hidden = false;
+}
+
 function buatKartu(item) {
   const kartu = document.createElement("article");
   kartu.className = "kartu";
@@ -34,17 +40,17 @@ function buatKartu(item) {
   const kesulitan = document.createElement("p");
   const labelKesulitan = document.createElement("strong");
   labelKesulitan.textContent = "Kesulitan: ";
-  kesulitan.append(labelKesulitan, document.createTextNode(item.kesulitan));
+  kesulitan.append(labelKesulitan, document.createTextNode(item.kesulitan || item.kesulitan));
 
   kartu.append(judul, bahan, kesulitan);
   return kartu;
 }
 
-// LEMBAR B & D: Fungsi render utama
-function render(daftar) {
-  wadah.replaceChildren(); // Mengosongkan wadah sebelum mengisi ulang
+export function render(daftar) {
+  wadah.textContent = ""; // Kosongkan wadah
 
-  if (daftar.length === 0) {
+  if (!daftar || daftar.length === 0) {
+    pesanKosong.textContent = "Tidak ada menu yang sesuai dengan filter.";
     pesanKosong.hidden = false;
     return;
   }
@@ -61,20 +67,21 @@ function tandaiTombolAktif(tombolAktif) {
   });
 }
 
-// LEMBAR C: Event Delegation pada induk tombol filter
-barisFilter.addEventListener("click", (event) => {
-  const tombol = event.target.closest("button");
-  if (!tombol || !barisFilter.contains(tombol)) return;
+export function pasangFilter(daftar) {
+  barisFilter.addEventListener("click", (event) => {
+    const tombol = event.target.closest("button");
+    if (!tombol || !barisFilter.contains(tombol)) return;
 
-  kategoriAktif = tombol.dataset.kategori;
-  tandaiTombolAktif(tombol);
-  const hasil = menu.filter(
-    (item) => kategoriAktif === "semua" || item.kesulitan === kategoriAktif
-  );
-  render(hasil);
-});
+    const kategoriAktif = tombol.dataset.kategori;
+    tandaiTombolAktif(tombol);
+    const hasil = daftar.filter(
+      (item) => kategoriAktif === "semua" || item.kesulitan === kategoriAktif
+    );
+    render(hasil);
+  });
+}
 
-// LEMBAR D: Validasi Form per kolom
+// FORM VALIDATION & HANDLING
 const pasanganKolom = [
   { input: inputNama, pesan: document.querySelector("#galat-nama"), label: "Nama menu" },
   { input: inputBahan, pesan: document.querySelector("#galat-bahan"), label: "Bahan" },
@@ -105,39 +112,7 @@ pasanganKolom.forEach(({ input }) => {
   input.addEventListener("change", validasiForm);
 });
 
-form.addEventListener("submit", (event) => {
-  event.preventDefault(); // Mencegah reload halaman
-
-  if (!validasiForm()) {
-    pasanganKolom.find(({ input }) => input.value.trim() === "")?.input.focus();
-    return;
-  }
-
-  const menuBaru = {
-    nama: inputNama.value.trim(),
-    bahan: inputBahan.value.split(",").map((bahan) => bahan.trim()).filter(Boolean),
-    kesulitan: inputTingkat.value
-  };
-
-  menu = [...menu, menuBaru];
-
-  kategoriAktif = "semua";
-  const tombolSemua = barisFilter.querySelector('[data-kategori="semua"]');
-  if (tombolSemua) tandaiTombolAktif(tombolSemua);
-
-  render(menu);
-  form.reset();
-
-  pasanganKolom.forEach(({ input, pesan }) => {
-    input.setAttribute("aria-invalid", "false");
-    if (pesan) pesan.textContent = "";
-  });
-
-  tombolSimpan.disabled = true;
-  if (pesanSukses) pesanSukses.textContent = "Menu berhasil ditambahkan.";
-});
-
-// Fitur Toggle Tema Sederhana
+// Toggle Tema
 const tombolTema = document.querySelector("#tema-toggle");
 if (tombolTema) {
   tombolTema.addEventListener("click", () => {
@@ -145,6 +120,4 @@ if (tombolTema) {
   });
 }
 
-// Inisialisasi awal
-render(menu);
 validasiForm();

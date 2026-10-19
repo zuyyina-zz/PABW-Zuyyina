@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "nama": "Nasi Goreng Sayur",
+    "bahan": ["Brokoli", "Jagung", "Telur"],
+    "kesulitan": "Mudah"
+  },
+  {
+    "id": 2,
+    "nama": "Nasi Goreng Spesial",
+    "bahan": ["Sosis", "Telur", "Bakso", "Ati"],
+    "kesulitan": "Sedang"
+  },
+  {
+    "id": 3,
+    "nama": "Nasi Goreng Daging",
+    "bahan": ["Daging", "Telur"],
+    "kesulitan": "Sulit"
+  }
+]
