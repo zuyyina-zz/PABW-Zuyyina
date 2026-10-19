@@ -33,7 +33,8 @@ function buatKartu(item) {
     img.alt = item.nama;
     img.loading = "lazy";
     img.style.width = "100%";
-    img.style.height = "auto";
+    img.style.height = "180px"; 
+    img.style.objectFit = "cover";
     img.style.borderRadius = "var(--radius-md)";
     img.style.marginBottom = "var(--space-2)";
     kartu.append(img);
@@ -57,7 +58,7 @@ function buatKartu(item) {
 }
 
 export function render(daftar) {
-  wadah.textContent = "";
+  wadah.textContent = ""; 
 
   if (!daftar || daftar.length === 0) {
     pesanKosong.textContent = "Tidak ada menu yang sesuai dengan filter.";
@@ -82,11 +83,11 @@ export function pasangFilter(daftar) {
     const tombol = event.target.closest("button");
     if (!tombol || !barisFilter.contains(tombol)) return;
 
-    const menuPilihan = tombol.dataset.menu;
+    const pilihan = tombol.dataset.kategori;
     tandaiTombolAktif(tombol);
 
     const hasil = daftar.filter(
-      (item) => menuPilihan === "semua" || item.nama === menuPilihan
+      (item) => pilihan === "semua" || item.nama === pilihan
     );
     render(hasil);
   });

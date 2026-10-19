@@ -1,0 +1,127 @@
+body {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+header {
+  padding-block: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: var(--space-6);
+}
+
+.header-baris {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.theme-toggle {
+  font-size: var(--text-sm);
+  color: var(--color-fg);
+  cursor: pointer;
+}
+
+nav ul {
+  display: flex;
+  gap: var(--space-4);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+nav a:hover { 
+  text-decoration: underline; 
+}
+
+/* Layout 2 Kolom Utama */
+.konten-utama {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 60rem) {
+  .konten-utama {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-gap);
+}
+
+/* KATALOG KARTU BAHAN */
+.katalog {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-3);
+}
+
+.kartu {
+  flex: 1 1 16rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-1);
+  padding: var(--card-pad);
+  text-align: left;
+}
+
+.kartu h3 {
+  margin-bottom: var(--space-2);
+}
+
+/* SIDEBAR KARTU GAMBAR */
+.sidebar-kartu {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.kartu-item {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-1);
+}
+
+/* GAMBAR TAMPIL UTUH / TIDAK TERPOTONG */
+.kartu-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.kartu-item .info {
+  padding: var(--space-3) var(--space-4);
+}
+
+.kartu-item .info h4 {
+  font-size: var(--text-md);
+  margin: 0;
+}
+
+footer {
+  margin-top: var(--space-6);
+  padding-block: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-fg);
+  font-size: var(--text-sm);
+}
