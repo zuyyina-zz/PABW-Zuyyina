@@ -1,32 +1,17 @@
-import { pilihKategori, tambahFavorit, aturUlang } from './state.js';
+import { state, setKategoriAktif } from './state.js';
+import { renderProyekCards } from './dom.js';
 
-export function pasangPendengar() {
-  // Filter Kategori
-  const areaFilter = document.querySelector("#filter-kategori");
-  if (areaFilter) {
-    areaFilter.addEventListener("click", (e) => {
-      const tombol = e.target.closest("[data-kategori]");
-      if (tombol) {
-        pilihKategori(tombol.dataset.kategori);
-      }
-    });
-  }
+export function setupEventListeners(containerElement) {
+  const filterButtons = document.querySelectorAll('.btn-filter');
 
-  // Delegasi Event Klik Tombol Favorit
-  const wadahDaftar = document.querySelector("#daftar");
-  if (wadahDaftar) {
-    wadahDaftar.addEventListener("click", (event) => {
-      const tombol = event.target.closest(".favorit");
-      if (!tombol) return;
-      tambahFavorit(Number(tombol.dataset.id));
-    });
-  }
+  filterButtons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+      filterButtons.forEach((btn) => btn.classList.remove('active'));
+      e.target.classList.add('active');
 
-  // Tombol Atur Ulang
-  const tombolAturUlang = document.querySelector("#atur-ulang");
-  if (tombolAturUlang) {
-    tombolAturUlang.addEventListener("click", () => {
-      aturUlang();
+      const kategori = e.target.getAttribute('data-kategori');
+      setKategoriAktif(kategori);
+      renderProyekCards(state.filteredProyek, containerElement);
     });
-  }
+  });
 }

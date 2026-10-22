@@ -1,22 +1,15 @@
-import { ambilProyek } from './api.js';
-import { isiProyek, pulihkan, muat } from './state.js';
-import { tampilkanGalat, aturMemuat, tampilkanProfil } from './dom.js';
-import { pasangPendengar } from './events.js';
+import { fetchProyek } from './api.js';
+import { state, setProyekList } from './state.js';
+import { renderProyekCards } from './dom.js';
+import { setupEventListeners } from './events.js';
 
-async function mulai() {
-  tampilkanProfil();
-  pulihkan(muat());
-  pasangPendengar();
-  aturMemuat(true);
+document.addEventListener('DOMContentLoaded', async () => {
+  const container = document.getElementById('proyek-container');
 
-  try {
-    const data = await ambilProyek();
-    isiProyek(data);
-  } catch (galat) {
-    tampilkanGalat('Data gagal dimuat. Periksa koneksi, lalu muat ulang.');
-  } finally {
-    aturMemuat(false);
+  if (container) {
+    const data = await fetchProyek();
+    setProyekList(data);
+    renderProyekCards(state.filteredProyek, container);
+    setupEventListeners(container);
   }
-}
-
-mulai();
+});

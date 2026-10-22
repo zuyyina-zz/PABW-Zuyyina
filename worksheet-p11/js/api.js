@@ -1,17 +1,13 @@
-const ALAMAT = 'data/proyek.json';
-
-export async function ambilProyek() {
+export async function fetchProyek() {
   try {
-    const respons = await fetch(ALAMAT);
-    
-    if (!respons.ok) {
-      throw new Error(`Gagal mengambil data (Status: ${respons.status})`);
+    const response = await fetch('./data/proyek.json');
+    if (!response.ok) {
+      throw new Error(`Gagal mengambil data: ${response.statusText}`);
     }
-
-    const data = await respons.json();
+    const data = await response.json();
     return data;
-  } catch (galat) {
-    console.error('Terjadi kesalahan pada api.js:', galat.message);
-    throw galat;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
   }
 }
