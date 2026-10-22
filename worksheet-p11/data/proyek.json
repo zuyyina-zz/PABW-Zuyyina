@@ -4,20 +4,20 @@
     "nama": "Nasi Goreng Sayur",
     "bahan": ["Brokoli", "Jagung", "Telur"],
     "kesulitan": "Mudah",
-    "gambar": "nasgor sayur.jpg"
+    "gambar": "images/nasgor sayur.jpg"
   },
   {
     "id": 2,
     "nama": "Nasi Goreng Spesial",
     "bahan": ["Sosis", "Telur", "Bakso", "Ati"],
     "kesulitan": "Sedang",
-    "gambar": "Nasi goreng.jpg"
+    "gambar": "images/Nasi goreng.jpg"
   },
   {
     "id": 3,
     "nama": "Nasi Goreng Daging",
     "bahan": ["Daging", "Telur"],
     "kesulitan": "Sulit",
-    "gambar": "nasgor daging.jpg"
+    "gambar": "images/nasgor daging.jpg"
   }
 ]

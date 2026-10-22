@@ -104,3 +104,40 @@ button:not(:disabled):hover {
   color: #16a34a;
   font-weight: 600;
 }
+
+/* Tombol bintang favorit pada gambar nasi goreng */
+.kartu-foto {
+  position: relative;
+}
+
+.kartu-foto img {
+  display: block;
+}
+
+.bintang-gambar {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--color-primary);
+  color: white;
+  font-size: 1.5rem;
+  line-height: 1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  z-index: 2;
+}
+
+.bintang-gambar.is-favorit {
+  color: #ffdf35;
+}
+
+.bintang-gambar:focus-visible {
+  outline: 3px solid var(--color-fg);
+  outline-offset: 3px;
+}
