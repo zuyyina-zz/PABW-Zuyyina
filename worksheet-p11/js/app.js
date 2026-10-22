@@ -1,24 +1,22 @@
-import { ambilProyek } from "./api.js";
-import { render, pasangFilter, aturMemuat, tampilkanGalat } from "./dom.js";
+import { ambilProyek } from './api.js';
+import { isiProyek, pulihkan, muat } from './state.js';
+import { tampilkanGalat, aturMemuat, tampilkanProfil } from './dom.js';
+import { pasangPendengar } from './events.js';
 
-export const profil = {
-  nama: "Zuyyina Liwalidain",
-  peran: "Mahasiswa Informatika",
-  keahlian: ["HTML", "CSS", "JavaScript"]
-};
-
-async function muat() {
+async function mulai() {
+  tampilkanProfil();
+  pulihkan(muat());
+  pasangPendengar();
   aturMemuat(true);
+
   try {
-    const daftar = await ambilProyek();
-    pasangFilter(daftar);
-    render(daftar);
+    const data = await ambilProyek();
+    isiProyek(data);
   } catch (galat) {
-    tampilkanGalat("Data gagal dimuat. Periksa koneksi, lalu muat ulang halaman.");
-    console.error("Detail Galat:", galat.message);
+    tampilkanGalat('Data gagal dimuat. Periksa koneksi, lalu muat ulang.');
   } finally {
     aturMemuat(false);
   }
 }
 
-muat();
+mulai();

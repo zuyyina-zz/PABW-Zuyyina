@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nasi Goreng Saya</title>
-
+  <title>Profil Saya - P11</title>
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="base.css">
   <link rel="stylesheet" href="layout.css">
@@ -13,148 +12,36 @@
   <link rel="stylesheet" href="responsif.css">
 </head>
 <body>
-
-  <!-- HEADER -->
   <header>
-    <div class="header-baris">
-      <div class="header-left">
-        <span class="theme-toggle" id="tema-toggle">Tema gelap</span>
-        <h1>Nasi Goreng Saya</h1>
-      </div>
-      <nav>
-        <ul>
-          <li><a href="#daftarbahan-1">Daftar Bahan</a></li>
-          <li><a href="#caramembuat-2">Cara Membuat</a></li>
-          <li><a href="#tentangsaya-3">Tentang Saya</a></li>
-        </ul>
-      </nav>
-    </div>
+    <h1 id="nama-profil">Profil Mahasiswa</h1>
+    <p id="peran-profil"></p>
+    <p id="keahlian-profil"></p>
   </header>
 
-  <div class="konten-utama">
-    <!-- KOLOM KIRI -->
-    <main>
-      <section id="daftarbahan-1">
-        <h2>Daftar Bahan</h2>
-        <p>Daftar Bahan dan Nasi Goreng Saya</p>
-
-        <!-- Tabel Static -->
-        <div class="table-wrap">
-          <table class="tabel-menu">
-            <thead>
-              <tr>
-                <th>No</th>
-                <th>Nama Menu</th>
-                <th>Bahan</th>
-                <th>Tingkat Kesulitan</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td><strong>Nasi Goreng Sayur</strong></td>
-                <td>Kacang polong, jagung, wortel</td>
-                <td>Mudah</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td><strong>Nasi Goreng Spesial</strong></td>
-                <td>Sosis, telur, bakso, ati</td>
-                <td>Sedang</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td><strong>Nasi Goreng Daging</strong></td>
-                <td>Daging</td>
-                <td>Sulit</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- Filter berdasarkan Nama Menu -->
-        <h2>Daftar Menu</h2>
-        <div id="filter" class="filter-baris">
-          <button type="button" data-kategori="semua" class="aktif">Semua</button>
-          <button type="button" data-kategori="Nasi Goreng Sayur">Nasi Goreng Sayur</button>
-          <button type="button" data-kategori="Nasi Goreng Spesial">Nasi Goreng Spesial</button>
-          <button type="button" data-kategori="Nasi Goreng Daging">Nasi Goreng Daging</button>
-        </div>
-
-        <p id="muat" hidden>Memuat data...</p>
-        <p id="pesan-kosong" hidden>Tidak ada menu yang sesuai dengan filter.</p>
-
-        <!-- Tempat Kartu & Foto Tampil -->
-        <div id="daftar" class="katalog"></div>
-      </section>
-
-      <!-- FORM -->
-      <section id="caramembuat-2" class="form-container">
-        <h2>Cara Membuat</h2>
-        <form action="#" method="post" id="form-menu" class="form-kegiatan" novalidate>
-          <div class="form-kolom">
-            <label for="nama">Nama Menu:</label>
-            <input type="text" id="nama" name="nama" required>
-            <span class="pesan-galat" id="galat-nama"></span>
-          </div>
-
-          <div class="form-kolom">
-            <label for="bahan">Bahan (pisahkan dengan koma):</label>
-            <input type="text" id="bahan" name="bahan" required>
-            <span class="pesan-galat" id="galat-bahan"></span>
-          </div>
-
-          <div class="form-kolom">
-            <label for="tingkat">Tingkat Kesulitan:</label>
-            <select id="tingkat" name="tingkat" required>
-              <option value="">-- Pilih Kesulitan --</option>
-              <option value="Mudah">Mudah</option>
-              <option value="Sedang">Sedang</option>
-              <option value="Sulit">Sulit</option>
-            </select>
-            <span class="pesan-galat" id="galat-tingkat"></span>
-          </div>
-
-          <button type="submit" id="tombol-simpan" disabled>Simpan</button>
-          <p id="pesan-sukses" class="pesan-sukses"></p>
-        </form>
-      </section>
-
-      <!-- TENTANG SAYA -->
-      <section id="tentangsaya-3">
-        <h2>Tentang Saya</h2>
-        <p>Halaman ini dikembangkan sebagai bagian dari praktikum Pengembangan Aplikasi Berbasis Web.</p>
-      </section>
-    </main>
-
-    <!-- SIDEBAR GAMBAR -->
-    <aside class="sidebar-kartu">
-      <div class="kartu-item">
-        <img src="nasgor sayur.jpg" alt="Nasi Goreng Sayur" loading="lazy">
-        <div class="info">
-          <h4>Nasi Goreng Sayur</h4>
-        </div>
+  <main>
+    <section>
+      <h2>Daftar Proyek</h2>
+      
+      <!-- Tombol Filter Kategori -->
+      <div id="filter-kategori">
+        <button data-kategori="semua" class="aktif">Semua</button>
+        <button data-kategori="web">Web</button>
+        <button data-kategori="desain">Desain</button>
+        <button data-kategori="aplikasi">Aplikasi</button>
+        <button id="atur-ulang">Atur ulang</button>
       </div>
-      <div class="kartu-item">
-        <img src="Nasi goreng.jpg" alt="Nasi Goreng Spesial" loading="lazy">
-        <div class="info">
-          <h4>Nasi Goreng Spesial</h4>
-        </div>
-      </div>
-      <div class="kartu-item">
-        <img src="nasgor daging.jpg" alt="Nasi Goreng Daging" loading="lazy">
-        <div class="info">
-          <h4>Nasi Goreng Daging</h4>
-        </div>
-      </div>
-    </aside>
-  </div>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>zuyyina liwalidain, 25523069, 2026</p>
-  </footer>
+      <!-- Indikator Status -->
+      <p id="memuat" hidden>Memuat data proyek...</p>
+      <p id="pesan-galat" hidden style="color: red;"></p>
+      <p id="kosong" hidden>Tidak ada proyek dalam kategori ini.</p>
 
+      <!-- Wadah Daftar Proyek -->
+      <ul id="daftar"></ul>
+    </section>
+  </main>
+
+  <!-- Hanya satu baris penanggan modul JavaScript -->
   <script type="module" src="js/app.js"></script>
 </body>
 </html>
